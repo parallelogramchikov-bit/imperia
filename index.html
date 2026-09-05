@@ -219,6 +219,9 @@ a{color:inherit; text-decoration:none}
 .foot-links a:hover{color:#fff}
 .disclaimer{color:var(--muted); font-size:13px; max-width:720px; margin:22px auto 0; line-height:1.7}
 .copy{color:#5c4d4a; font-size:12px; margin-top:26px; letter-spacing:.05em}
+.policy-link{margin:10px 0 0; text-align:center}
+.policy-link a{font-family:var(--body); font-size:10px; letter-spacing:.04em; color:#5c4d4a; text-decoration:none}
+.policy-link a:hover{color:var(--muted); text-decoration:underline}
 
 /* модалки */
 .modal{position:fixed; inset:0; z-index:100; display:none; align-items:center; justify-content:center; padding:22px;
@@ -290,6 +293,8 @@ a{color:inherit; text-decoration:none}
 .btn-mini:hover{border-color:var(--gold); color:#fff}
 .navmenu .btn-mini{font-size:11px}
 .navmenu-channel{margin-top:16px}
+.navmenu-policy{margin-top:22px; font-family:var(--body)!important; font-size:11px!important; letter-spacing:.04em; color:#6b5a56!important; text-decoration:none}
+.navmenu-policy:hover{color:var(--muted)!important; text-decoration:underline}
 .hero-mini{margin-top:14px; text-align:left}
 /* программа — карточки в общей стилистике */
 .prog-list{max-width:900px; margin:0 auto; display:flex; flex-direction:column; gap:16px}
@@ -313,10 +318,30 @@ a{color:inherit; text-decoration:none}
 .prog-note2 p:last-child{margin-bottom:0}
 /* «Для кого» — фоновое фото */
 #forwhom{position:relative; background-size:cover; background-position:center; background-attachment:fixed}
-#forwhom::before{content:""; position:absolute; inset:0; background:linear-gradient(180deg,rgba(11,7,8,.94),rgba(11,7,8,.88)); z-index:0}
+#forwhom::before{content:""; position:absolute; inset:0; background:linear-gradient(180deg,rgba(11,7,8,.82),rgba(11,7,8,.74)); z-index:0}
 #forwhom > .wrap{position:relative; z-index:1}
 @media (max-width:900px){ #forwhom{background-attachment:scroll} }
 @media (prefers-reduced-motion:reduce){ #forwhom{background-attachment:scroll} }
+/* согласие + политика */
+.consent{display:flex; align-items:flex-start; gap:10px; margin:4px 0 16px}
+.consent input{width:18px; height:18px; flex:none; margin-top:2px; accent-color:var(--gold); cursor:pointer}
+.consent label{font-family:var(--body); text-transform:none; letter-spacing:0; font-size:12.5px; color:var(--muted); line-height:1.5; margin:0; cursor:pointer}
+.consent a{color:var(--gold-2); text-decoration:underline}
+.policy-modal .modal-card{max-width:720px; max-height:85vh; overflow-y:auto; text-align:left}
+.policy-modal h3{text-align:center}
+.policy-body{max-width:820px; margin:0 auto}
+.policy-body h3{font-family:var(--display); font-weight:400; font-size:21px; color:var(--gold-2); margin:26px 0 10px}
+.policy-body p, .policy-body li{color:var(--cream); font-size:15px; line-height:1.7}
+.policy-body ul{padding-left:20px}
+.policy-body .upd{color:var(--muted); font-size:13.5px}
+/* cookie-баннер */
+.cookiebar{position:fixed; left:0; right:0; bottom:0; z-index:90; display:none; gap:18px; align-items:center; justify-content:center; flex-wrap:wrap;
+  background:rgba(11,7,8,.97); border-top:1px solid var(--line); padding:16px 22px; backdrop-filter:blur(8px)}
+.cookiebar.show{display:flex}
+.cookiebar p{margin:0; color:var(--cream); font-size:13.5px; max-width:62ch; line-height:1.5}
+.cookiebar a{color:var(--gold-2); text-decoration:underline}
+.cookiebar .btn{padding:11px 24px; font-size:12px}
+@media (max-width:640px){ .cookiebar{padding:14px 18px} .cookiebar p{font-size:12.5px} .cookiebar .btn{width:100%} }
 /* появление при прокрутке */
 .reveal{opacity:0; transform:translateY(26px); transition:opacity .8s ease, transform .8s ease}
 .reveal.in{opacity:1; transform:none}
@@ -440,6 +465,7 @@ const NASTROIKI = {
     <a href="#reviews" onclick="closeMenu()">Отзывы</a>
     <a class="navmenu-cta contact-tg" href="https://t.me/ilyatrop" onclick="closeMenu()">Оставить заявку в Telegram</a>
     <a class="btn-mini navmenu-channel contact-channel" href="https://t.me/+FLR9qteCOvszY2Ji" onclick="closeMenu()">Наш Telegram-канал</a>
+    <a class="navmenu-policy" href="#" onclick="closeMenu();openPolicy();return false;">Политика конфиденциальности</a>
   </nav>
 </div>
 
@@ -734,6 +760,10 @@ const NASTROIKI = {
     <div class="field"><label>Номер телефона</label><input id="f-phone" type="tel" placeholder="+7 ___ ___-__-__"></div>
     <div class="field"><label>Ник в Telegram <span style="text-transform:none;letter-spacing:0;color:var(--muted)">— если есть, необязательно</span></label><input id="f-tg" type="text" placeholder="@username"></div>
     <div class="field"><label>Вопрос (необязательно)</label><textarea id="f-note" rows="2" placeholder="Вопрос или пожелание"></textarea></div>
+    <div class="consent">
+      <input type="checkbox" id="f-consent">
+      <label for="f-consent">Я согласен на обработку персональных данных и принимаю <a href="#" onclick="openPolicy();return false;">политику конфиденциальности</a>.</label>
+    </div>
     <button class="btn btn-gold" style="width:100%" onclick="submitForm()">Отправить заявку</button>
   </div>
 </div>
@@ -752,7 +782,65 @@ const NASTROIKI = {
   </div>
 </div>
 
+<!-- МОДАЛКА: ПОЛИТИКА КОНФИДЕНЦИАЛЬНОСТИ -->
+<div class="modal policy-modal" id="policyModal">
+  <div class="modal-card policy-card">
+    <button class="close" onclick="closePolicy()" aria-label="Закрыть">&times;</button>
+    <span class="cr"></span>
+    <h3>Политика конфиденциальности</h3>
+    <div class="policy-body">
+      <p class="upd">Редакция от 5 сентября 2026 года.</p>
+
+      <h3>1. Общие положения</h3>
+      <p>Настоящая Политика определяет порядок обработки персональных данных посетителей сайта и составлена в соответствии с Федеральным законом от 27.07.2006 № 152-ФЗ «О персональных данных». Используя сайт и отправляя заявку, вы подтверждаете согласие с условиями настоящей Политики.</p>
+
+      <h3>2. Какие данные мы собираем</h3>
+      <p>Мы обрабатываем только те данные, которые вы предоставляете добровольно при отправке заявки:</p>
+      <ul>
+        <li>имя или иное обращение;</li>
+        <li>номер телефона;</li>
+        <li>имя пользователя в мессенджере (по желанию);</li>
+        <li>текст вашего сообщения или вопроса.</li>
+      </ul>
+      <p>Дополнительно могут собираться обезличенные технические данные с помощью сервисов интернет-статистики: файлы cookie, сведения о браузере и устройстве, источник перехода на сайт.</p>
+
+      <h3>3. Цели обработки</h3>
+      <p>Данные используются исключительно для того, чтобы связаться с вами, ответить на ваш вопрос, рассмотреть заявку и сообщить условия участия в мероприятии. Мы не используем ваши данные для целей, не указанных здесь.</p>
+
+      <h3>4. Передача третьим лицам</h3>
+      <p>Мы не продаём, не публикуем и не передаём ваши персональные данные третьим лицам, за исключением случаев, прямо предусмотренных законодательством Российской Федерации.</p>
+
+      <h3>5. Хранение и защита</h3>
+      <p>Данные хранятся не дольше, чем необходимо для целей обработки. Мы принимаем разумные организационные и технические меры для защиты информации от неправомерного доступа, изменения, раскрытия или уничтожения.</p>
+
+      <h3>6. Ваши права</h3>
+      <p>Вы вправе в любой момент отозвать согласие на обработку персональных данных, запросить сведения об обрабатываемых данных, потребовать их уточнения, блокирования или удаления. Для этого напишите нам в Telegram или MAX по контактам, указанным на сайте.</p>
+
+      <h3>7. Файлы cookie</h3>
+      <p>Сайт использует файлы cookie для корректной работы и анализа посещаемости. Вы можете отключить cookie в настройках браузера — на работоспособность основных разделов сайта это не повлияет.</p>
+
+      <h3>8. Изменения Политики</h3>
+      <p>Мы вправе вносить изменения в настоящую Политику. Актуальная редакция всегда размещена на этой странице.</p>
+    </div>
+  </div>
+</div>
+
+<!-- COOKIE-БАННЕР -->
+<div class="cookiebar" id="cookiebar">
+  <p>Мы используем файлы cookie для корректной работы сайта и анализа посещаемости. Продолжая пользоваться сайтом, вы соглашаетесь с <a href="#" onclick="openPolicy();return false;">политикой конфиденциальности</a>.</p>
+  <button class="btn btn-gold" onclick="acceptCookies()">Принять</button>
+</div>
+
 <script>
+/* ---- политика конфиденциальности ---- */
+function openPolicy(){document.getElementById('policyModal').classList.add('open'); document.body.style.overflow='hidden';}
+function closePolicy(){document.getElementById('policyModal').classList.remove('open'); document.body.style.overflow='';}
+
+/* ---- cookie-баннер ---- */
+function acceptCookies(){document.getElementById('cookiebar').classList.remove('show'); try{localStorage.setItem('ck','1')}catch(e){}}
+(function(){ let ok=false; try{ok=localStorage.getItem('ck')==='1'}catch(e){}
+  if(!ok) setTimeout(()=>document.getElementById('cookiebar').classList.add('show'), 1200); })();
+
 /* ---- мобильное меню ---- */
 function toggleMenu(){const el=document.getElementById('navMenu'); const o=el.classList.toggle('open'); document.body.style.overflow=o?'hidden':'';}
 function closeMenu(){document.getElementById('navMenu').classList.remove('open'); document.body.style.overflow='';}
@@ -789,6 +877,7 @@ function submitForm(){
   const tg=(document.getElementById('f-tg').value||'').trim();
   const note=(document.getElementById('f-note').value||'').trim();
   if(!name||!phone){alert('Пожалуйста, укажите имя и номер телефона.');return;}
+  if(!document.getElementById('f-consent').checked){alert('Пожалуйста, подтвердите согласие на обработку персональных данных.');return;}
   const payload={
     "Имя":name, "Телефон":phone, "Telegram": tg||"—", "Вопрос": note||"—",
     "_subject":"Новая заявка — Империя Страсти", "_captcha":"false", "_template":"table"

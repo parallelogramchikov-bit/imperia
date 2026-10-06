@@ -538,15 +538,15 @@ const NASTROIKI = {
     <h1>Империя<span class="amp">&#10022;</span>Страсти</h1>
     <p class="hero-legend">Говорят, графиня знала тайну трёх карт и открывала её лишь избранным. В нашей Империи цена одна — смелость.</p>
     <div class="hero-meta">
-      <div><span>Дата</span><b id="m-date">—</b></div>
-      <div><span>Время</span><b id="m-time">—</b></div>
-      <div><span>Место</span><b id="m-place">—</b></div>
+      <div><span>Дата</span><b id="m-date">31 октября</b></div>
+      <div><span>Время</span><b id="m-time">20:00 — 03:00</b></div>
+      <div><span>Место</span><b id="m-place">Сообщаем после регистрации</b></div>
     </div>
     <div class="hero-actions">
-      <a href="https://t.me/ilyatrop" class="btn btn-gold contact-tg">Оставить заявку в Telegram</a>
+      <a href="https://t.me/+FLR9qteCOvszY2Ji" class="btn btn-gold contact-channel">Наш Telegram-канал</a>
       <a href="#program" class="btn btn-ghost">Как проходит вечер</a>
     </div>
-    <div class="contact-mini hero-mini"><a class="btn-mini contact-channel" href="https://t.me/+FLR9qteCOvszY2Ji">Наш Telegram-канал</a></div>
+    <div class="contact-mini hero-mini"><a class="btn-mini contact-tg" href="https://t.me/ilyatrop">Оставить заявку в Telegram</a></div>
   </div>
 </section>
 
@@ -720,11 +720,11 @@ const NASTROIKI = {
       <h4>Включено в титул</h4>
       <ul class="incl-list">
         <li>Вход и участие во всех активностях: бал, фанты и игры на знакомство, все шоу, Римские покои (комнаты для уединения)</li>
-        <li>Зал практик: сессии у мастеров массажа, шибари, ваксплея, флогелляции и других практик</li>
+        <li>Зал практик: сессии у мастеров массажа, шибари, ваксплея, флагелляции и других практик</li>
         <li>Империя чувств: сенсориум с масками на глазах</li>
         <li>Доступ ко всем тёмным покоям</li>
         <li>Пользование общим залом и всеми девайсами: массажный стол, масла, свечи, плети и прочее</li>
-        <li>Императорский пир: шведский стол и напитки (вино, игристое, соки, чай, кофе)</li>
+        <li>Императорский пир: шведский стол и напитки</li>
         <li>Средства гигиены</li>
         <li>Тематический костюм необязателен — достаточно <a href="#dresscode">соблюдать дресс-код</a></li>
       </ul>
@@ -741,7 +741,6 @@ const NASTROIKI = {
         <li>Можно прийти как одному, так и в паре</li>
         <li>Персональная придворная дама весь вечер рядом: знакомит вас с гостями, подаёт напитки и угощения, помогает чувствовать себя во дворце как дома</li>
         <li>Личное эротическое представление только для вас</li>
-        <li>Отдельные императорские покои: доступ есть только у вас и у тех, кого вы туда пригласите</li>
       </ul>
       <a href="https://t.me/ilyatrop" class="btn btn-gold contact-tg">Обсудить лично в Telegram</a>
     </div>
@@ -778,7 +777,7 @@ const NASTROIKI = {
   <div class="wrap contact-inner reveal">
     <div class="rule"><span class="cr"></span></div>
     <h2 class="display">Ваша ночь начинается с одного сообщения</h2>
-    <p class="lead">Мессенджеры отвечают быстрее всего. Форму используйте, если так удобнее — ответим чуть позже.</p>
+    <p class="lead">Мессенджеры отвечают быстрее всего.</p>
     <div class="contact-btns">
       <a class="btn btn-gold btn-hero contact-tg" href="https://t.me/ilyatrop">Оставить заявку в Telegram</a>
     </div>
@@ -798,25 +797,6 @@ const NASTROIKI = {
     <p class="copy">© Империя Страсти, 2026. Москва.</p>
   </div>
 </footer>
-
-<!-- МОДАЛКА: ФОРМА ЗАЯВКИ -->
-<div class="modal" id="formModal">
-  <div class="modal-card">
-    <button class="close" onclick="closeForm()" aria-label="Закрыть">&times;</button>
-    <span class="cr"></span>
-    <h3>Оставить заявку</h3>
-    <p class="sub">Заполните — и мы свяжемся с вами. Быстрее всего отвечаем в Telegram.</p>
-    <div class="field"><label>Имя</label><input id="f-name" type="text" placeholder="Как к вам обращаться"></div>
-    <div class="field"><label>Номер телефона</label><input id="f-phone" type="tel" placeholder="+7 ___ ___-__-__"></div>
-    <div class="field"><label>Ник в Telegram <span style="text-transform:none;letter-spacing:0;color:var(--muted)">— если есть, необязательно</span></label><input id="f-tg" type="text" placeholder="@username"></div>
-    <div class="field"><label>Вопрос (необязательно)</label><textarea id="f-note" rows="2" placeholder="Вопрос или пожелание"></textarea></div>
-    <div class="consent">
-      <input type="checkbox" id="f-consent">
-      <label for="f-consent">Я согласен на обработку персональных данных и принимаю <a href="#" onclick="openPolicy();return false;">политику конфиденциальности</a>.</label>
-    </div>
-    <button class="btn btn-gold" style="width:100%" onclick="submitForm()">Отправить заявку</button>
-  </div>
-</div>
 
 <!-- МОДАЛКА: 18+ -->
 <div class="modal" id="ageModal">
@@ -925,35 +905,6 @@ addEventListener('scroll',()=>head.classList.toggle('scrolled', scrollY>40));
 /* ---- появление секций ---- */
 const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in'); io.unobserve(e.target);}}),{threshold:.12});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-
-/* ---- модалка заявки ---- */
-function openForm(){document.getElementById('formModal').classList.add('open'); ymGoal('form_open');}
-function closeForm(){document.getElementById('formModal').classList.remove('open')}
-function submitForm(){
-  const name=(document.getElementById('f-name').value||'').trim();
-  const phone=(document.getElementById('f-phone').value||'').trim();
-  const tg=(document.getElementById('f-tg').value||'').trim();
-  const note=(document.getElementById('f-note').value||'').trim();
-  if(!name||!phone){alert('Пожалуйста, укажите имя и номер телефона.');return;}
-  if(!document.getElementById('f-consent').checked){alert('Пожалуйста, подтвердите согласие на обработку персональных данных.');return;}
-  const payload={
-    "Имя":name, "Телефон":phone, "Telegram": tg||"—", "Вопрос": note||"—",
-    "_subject":"Новая заявка — Империя Страсти", "_captcha":"false", "_template":"table"
-  };
-  const btn=event&&event.target; if(btn){btn.disabled=true; btn.textContent='Отправляем…';}
-  const restore=()=>{if(btn){btn.disabled=false; btn.textContent='Отправить заявку';}};
-  const text=`Заявка «Империя Страсти»\nИмя: ${name}\nТелефон: ${phone}\nTelegram: ${tg||'—'}\nВопрос: ${note||'—'}`;
-  if(NASTROIKI.formEndpoint){
-    fetch(NASTROIKI.formEndpoint,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload)})
-      .then(r=>r.ok?done():mailFallback(text)).catch(()=>mailFallback(text)).finally(restore);
-  } else { restore(); mailFallback(text); }
-}
-function mailFallback(text){
-  // запасной вариант — открыть почтовое приложение с готовым письмом
-  location.href='mailto:'+encodeURIComponent(NASTROIKI.email)+'?subject='+encodeURIComponent('Заявка — Империя Страсти')+'&body='+encodeURIComponent(text);
-  done();
-}
-function done(){ ymGoal('form_submit'); closeForm(); alert('Спасибо! Заявка отправлена — мы свяжемся с вами. Быстрее всего ответим, если продублируете в Telegram или MAX.'); }
 
 /* ---- возрастной фильтр 18+ ----
    Показывается при каждом заходе. На реальном хостинге можно запомнить выбор

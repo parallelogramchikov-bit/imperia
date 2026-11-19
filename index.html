@@ -473,6 +473,7 @@ a{color:inherit; text-decoration:none}
 const NASTROIKI = {
   // Ссылка на твой Telegram
   telegram: "https://t.me/ilyatrop",
+  telegramApplication: "https://t.me/m/3ortjT3qYmMy",
 
   // Ссылка на твой профиль в MAX
   max: "https://max.ru/u/f9LHodD0cOLNi-9U7cPZtqbgMEHG1vSk8kDxBWm6Co7gFVBoWkLcIMg22aE",
@@ -522,7 +523,7 @@ const NASTROIKI = {
     <a href="#safety" onclick="closeMenu()">Комфорт и безопасность</a>
     <a href="#tariffs" onclick="closeMenu()">Титулы</a>
     <a href="#reviews" onclick="closeMenu()">Отзывы</a>
-    <a class="navmenu-cta contact-tg" href="https://t.me/ilyatrop" onclick="closeMenu()">Оставить заявку в Telegram</a>
+    <a class="navmenu-cta contact-tg contact-request" href="https://t.me/ilyatrop" onclick="closeMenu()">Оставить заявку в Telegram</a>
     <a class="btn-mini navmenu-channel contact-channel" href="https://t.me/+FLR9qteCOvszY2Ji" onclick="closeMenu()">Наш Telegram-канал</a>
     <a class="navmenu-policy" href="#" onclick="closeMenu();openPolicy();return false;">Политика конфиденциальности</a>
   </nav>
@@ -546,7 +547,7 @@ const NASTROIKI = {
       <a href="https://t.me/+FLR9qteCOvszY2Ji" class="btn btn-gold contact-channel">Наш Telegram-канал</a>
       <a href="#program" class="btn btn-ghost">Как проходит вечер</a>
     </div>
-    <div class="contact-mini hero-mini"><a class="btn-mini contact-tg" href="https://t.me/ilyatrop">Оставить заявку в Telegram</a></div>
+    <div class="contact-mini hero-mini"><a class="btn-mini contact-tg contact-request" href="https://t.me/ilyatrop">Оставить заявку в Telegram</a></div>
   </div>
 </section>
 
@@ -601,7 +602,7 @@ const NASTROIKI = {
     <h2 class="display">Получить приглашение в Империю</h2>
     <p class="lead">Оставьте заявку — расскажем детали вечера, а точный адрес сообщим после одобрения. Быстрее всего отвечаем в Telegram.</p>
     <div class="contact-btns">
-      <a class="btn btn-gold btn-hero contact-tg" href="https://t.me/ilyatrop">Оставить заявку в Telegram</a>
+      <a class="btn btn-gold btn-hero contact-tg contact-request" href="https://t.me/ilyatrop">Оставить заявку в Telegram</a>
     </div>
     <div class="contact-mini"><a class="btn-mini contact-channel" href="https://t.me/+FLR9qteCOvszY2Ji">Наш Telegram-канал</a><a class="btn-mini contact-max" href="https://max.ru/u/f9LHodD0cOLNi-9U7cPZtqbgMEHG1vSk8kDxBWm6Co7gFVBoWkLcIMg22aE">Оставить заявку в MAX</a></div>
   </div>
@@ -693,7 +694,7 @@ const NASTROIKI = {
     <h2 class="display">Ставки сделаны</h2>
     <p class="lead">Получить приглашение ко двору Империи. Напишите нам — и вы на шаг ближе к вечеру, где каждый вечер хранит свои тайны.</p>
     <div class="contact-btns">
-      <a class="btn btn-gold btn-hero contact-tg" href="https://t.me/ilyatrop">Оставить заявку в Telegram</a>
+      <a class="btn btn-gold btn-hero contact-tg contact-request" href="https://t.me/ilyatrop">Оставить заявку в Telegram</a>
     </div>
     <div class="contact-mini"><a class="btn-mini contact-channel" href="https://t.me/+FLR9qteCOvszY2Ji">Наш Telegram-канал</a><a class="btn-mini contact-max" href="https://max.ru/u/f9LHodD0cOLNi-9U7cPZtqbgMEHG1vSk8kDxBWm6Co7gFVBoWkLcIMg22aE">Оставить заявку в MAX</a></div>
   </div>
@@ -729,7 +730,7 @@ const NASTROIKI = {
         <li>Средства гигиены</li>
         <li>Тематический костюм необязателен — достаточно <a href="#dresscode">соблюдать дресс-код</a></li>
       </ul>
-      <a href="https://t.me/ilyatrop" class="btn btn-gold contact-tg">Оставить заявку в Telegram</a>
+      <a href="https://t.me/ilyatrop" class="btn btn-gold contact-tg contact-request">Оставить заявку в Telegram</a>
     </div>
 
     <!-- ТИТУЛ: ИМПЕРАТОР -->
@@ -780,7 +781,7 @@ const NASTROIKI = {
     <h2 class="display">Ваша ночь начинается с одного сообщения</h2>
     <p class="lead">Мессенджеры отвечают быстрее всего.</p>
     <div class="contact-btns">
-      <a class="btn btn-gold btn-hero contact-tg" href="https://t.me/ilyatrop">Оставить заявку в Telegram</a>
+      <a class="btn btn-gold btn-hero contact-tg contact-request" href="https://t.me/ilyatrop">Оставить заявку в Telegram</a>
     </div>
     <div class="contact-mini"><a class="btn-mini contact-channel" href="https://t.me/+FLR9qteCOvszY2Ji">Наш Telegram-канал</a><a class="btn-mini contact-max" href="https://max.ru/u/f9LHodD0cOLNi-9U7cPZtqbgMEHG1vSk8kDxBWm6Co7gFVBoWkLcIMg22aE">Оставить заявку в MAX</a></div>
   </div>
@@ -895,6 +896,7 @@ function closeMenu(){document.getElementById('navMenu').classList.remove('open')
 /* ---- подстановка ссылок и данных события из NASTROIKI ---- */
 (function(){
   document.querySelectorAll('.contact-tg').forEach(a=>a.href = NASTROIKI.telegram);
+  document.querySelectorAll('.contact-request').forEach(a=>a.href = NASTROIKI.telegramApplication);
   document.querySelectorAll('.contact-max').forEach(a=>a.href = NASTROIKI.max);
   document.querySelectorAll('.contact-channel').forEach(a=>a.href = NASTROIKI.channel);
   const set=(id,v)=>{const e=document.getElementById(id); if(e) e.textContent=v;};
